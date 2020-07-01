@@ -14,9 +14,6 @@ bool moves(vector<vector<char>> board){
 	}
 	return false;
 }
-int minimax(){
-
-}
 int value(vector<vector<char>> board){
 	//check for row
 	for(int i=0;i<3;i++){
@@ -44,28 +41,36 @@ int value(vector<vector<char>> board){
 
 	return 0;
 }
-move getoptimal(vector<vector<char>> board){
+int minimax(vector<vector<char>> board,bool maxi,int d,int h){
+	if(d==h)return 	
+
+}
+move getoptimal(vector<vector<char>> board,int h){
 	int max=-1000;
 	move m;
 	for(int i=0;i<3;i++){
 		for(int j=0;j<3;j++){
 			if(board[i][j]=='_'){
 				board[i][j]='x';
-				int k=minimax(board,false,0);
+				int k=minimax(board,false,0,int h);
 				if(max<k){
 					max=k;
 					m.x=i;
 					m.y=j;
 				}
+				board[i][j]='_';
 			}
 		}
 	}
+	return m;
 }
 
 void main(){
-
+	int h=0;
 	vector<vector<char>> board;
 	board.resize(3);
+	cout<<"Enter maximum depth"<<endl;
+	cin>>h;
 	for(int i=0;i<3;i++){
 		board[i].resize(3,'_');
 	}
@@ -83,7 +88,7 @@ void main(){
 			g=1;
 			break;
 		}
-		move b=getoptimal(board,0,true);
+		move b=getoptimal(board,h);
 		board[b.x][b.y]='x';
 		if(value(board)==1){
 			cout<<"You lose"<<endl;
