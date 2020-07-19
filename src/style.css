@@ -224,7 +224,7 @@ button {
     background-color: lightgrey;
     width: 20vw;
     position: fixed;
-    bottom: 720px;
+    bottom: 620px;
     left: 0;
     top:150px;
 
@@ -233,9 +233,9 @@ button {
     background-color: lightgrey;
     width: 20vw;
     position: fixed;
-    bottom: 570px;
+    bottom: 500px;
     left: 0;
-    top:300px;
+    top:380px;
 
 }
 .sheadings{
@@ -267,7 +267,7 @@ button {
     color: Black;
 }
 .mode1{
-    width: 15vw;
+    width: 20vw;
     position: fixed;
     bottom: 550px;
     left: 0;
@@ -282,6 +282,7 @@ button {
 }
 
 .mode-select .mode{
+    display: block;
     margin: 10px;
     padding: 10px 20px;
     transition: background-color 200ms ease-in-out;
