@@ -249,7 +249,7 @@ button {
     background-color: lightgrey;
     width: 20vw;
     position: fixed;
-    bottom: 200px;
+    bottom: 50px;
     left: 0;
     top:500px;
 
@@ -317,21 +317,21 @@ button {
     background-color: black;
 }
 .mode12{
-    width: 5vw;
+    width: 20vw;
     position: fixed;
     bottom: 100px;
-    left: 75px;
     top:550px;
-
 }
 
 .level-select{
     margin-top: 100px;
     font-size: 16px;
     line-height: 40px;
+    
 }
 
 .level-select .level{
+    display: block;
     margin: 10px;
     padding: 10px 20px;
     transition: background-color 200ms ease-in-out;
