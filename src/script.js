@@ -65,17 +65,6 @@ function checkElement(element){
     element.disabled = "disabled";
 }
 
-function onUncheckBox(element, isImplicit = false) {
-    //Similar to checkedBoxes.pop()
-    checkedBoxes = checkedBoxes.filter(b => b.box != element.id);
-    if (!isImplicit) {
-        element.value = '';
-        element.removeAttribute("disabled");
-        turnCount--;
-        switchPlayer();
-    }
-}
-
 function switchPlayer() {
     //switch the current player to the other
     currentPlayer = currentPlayer == "X" ? "O" : "X";
@@ -264,10 +253,10 @@ function computeSavingMove() {
         var nextBox = document.querySelector(`[id='${move}']`)
         if (checkWinner(true) == 'game over') { 
             savingMoveCoords = move;
-            onUncheckBox(nextBox, true);
+            checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
             break;
         }
-        onUncheckBox(nextBox, true);
+        checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
     }
     switchPlayer();
     if(savingMoveCoords){
@@ -286,10 +275,10 @@ function computeFinishingMove() {
         var nextBox = document.querySelector(`[id='${move}']`)
         if (checkWinner(true) == 'game over') {
             finishingMoveCoords = move;
-            onUncheckBox(nextBox, true);
+            checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
             break;
         }
-        onUncheckBox(nextBox, true);
+        checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
     }
     if(finishingMoveCoords){
         console.log('Playing Finishing Move')
@@ -310,7 +299,7 @@ function findmove(){
         checkedBoxes.push({ box: move, player: currentPlayer });
         var nextBox = document.querySelector(`[id='${move}']`);
         var mval=minimax(0, false);
-        onUncheckBox(nextBox, true);
+        checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
         if(mval>=bval){            
             bmove=move;
             bval=mval;                       
@@ -341,7 +330,7 @@ function minimax(depth,ismax) {
             if(bval<v){
                 bval=v;
             }
-            onUncheckBox(nextBox, true);
+            checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
         }
         return bval;
     }
@@ -356,7 +345,7 @@ function minimax(depth,ismax) {
             if(bval>v){
                 bval=v;
             }
-            onUncheckBox(nextBox, true);
+            checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
             switchPlayer();
         }
         return bval;
