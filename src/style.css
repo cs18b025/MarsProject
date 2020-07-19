@@ -184,18 +184,7 @@ body{
     color:black;
     padding: 10px 0;
 }
-.depth {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
@@ -274,8 +263,55 @@ button {
 .mode-select .mode.mode-selected:hover {
     background-color: black;
 }
+.mode12{
+    width: 20vw;
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    top:500px;
+
+}
+.level-select{
+    margin-top: 100px;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+.level-select .level{
+    margin: 10px;
+    padding: 10px 20px;
+    transition: background-color 200ms ease-in-out;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
 
 
+}
+
+.level-select .level.active{
+    border: 4px solid green;
+}
+
+
+.level-select .level {
+    background-color: grey;
+}
+
+
+.level-select .level:hover {
+    background-color: black;
+}
+
+
+.level-select .level.level-selected {
+    background-color: black;
+    border: 5px black;
+    cursor: not-allowed;
+}
+
+.level-select .level.level-selected:hover {
+    background-color: black;
+}
 @media screen and (max-width: 991px){
     .box{
         width: 30vw;

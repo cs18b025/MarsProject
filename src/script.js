@@ -29,6 +29,49 @@ function onGameModeChange(mode, _el) {
     gameMode = mode;
     newGame(); 
 }
+function onLevelChange(level,_el) {
+    //Here depending on the button pressed, PvP or PvC mode is implemented
+    if (_el.classList.contains('level-selected'))
+        return;
+    _el.classList.add('level-selected');
+    if(level=='l1'){
+        max_depth=1;
+        document.querySelector(`.level.l2`).classList.remove('level-selected');
+        document.querySelector(`.level.l3`).classList.remove('level-selected');
+        document.querySelector(`.level.l4`).classList.remove('level-selected');
+        document.querySelector(`.level.l5`).classList.remove('level-selected');
+    }
+    if(level=='l2'){
+        max_depth=2;
+        document.querySelector(`.level.l1`).classList.remove('level-selected');
+        document.querySelector(`.level.l3`).classList.remove('level-selected');
+        document.querySelector(`.level.l4`).classList.remove('level-selected');
+        document.querySelector(`.level.l5`).classList.remove('level-selected');
+    }
+    if(level=='l3'){
+        max_depth=3;
+        document.querySelector(`.level.l2`).classList.remove('level-selected');
+        document.querySelector(`.level.l1`).classList.remove('level-selected');
+        document.querySelector(`.level.l4`).classList.remove('level-selected');
+        document.querySelector(`.level.l5`).classList.remove('level-selected');
+    }
+    if(level=='l4'){
+        max_depth=4;
+        document.querySelector(`.level.l2`).classList.remove('level-selected');
+        document.querySelector(`.level.l3`).classList.remove('level-selected');
+        document.querySelector(`.level.l1`).classList.remove('level-selected');
+        document.querySelector(`.level.l5`).classList.remove('level-selected');
+    }
+    if(level=='l5'){
+        max_depth=1000;
+        document.querySelector(`.level.l2`).classList.remove('level-selected');
+        document.querySelector(`.level.l3`).classList.remove('level-selected');
+        document.querySelector(`.level.l4`).classList.remove('level-selected');
+        document.querySelector(`.level.l1`).classList.remove('level-selected');
+    }
+    if(gameMode=='PvC')  newGame();   
+    
+}
 function clearSuggestion(){
     //Change suggestion color green to grey again
     var remainingMoves=getRemainingMoves();
@@ -147,6 +190,7 @@ function calculateScore(positions, isCheckOnly) {
 
 function clearBoard() {
     document.querySelectorAll('.box').forEach((value, index) => {
+        value.style.backgroundColor='gray';
         value.value = '';
         value.removeAttribute("disabled");
         checkedBoxes = [];
@@ -200,9 +244,6 @@ function computerPlays(isCheck = false) {
     var nextBoxCoords;
     //call findmove function to get best possible move for the computer
     //hard coding first level to speed up the process
-    if(turnCount == 1){
-        nextBoxCoords = computeFirstMove();
-    }
     //this is the first iteration of minimax in which a direct victory move is played
     if (!nextBoxCoords) {
         nextBoxCoords = computeFinishingMove(); 
