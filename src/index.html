@@ -10,49 +10,66 @@
 
 
 <body>
-
+    
     <div class='sidebar'>
-        
+        <div class="player-scores headings" color="Black">
+            Current scores:
+        </div>
         <div class="player-scores X">
             Player X: <span id="score-X">0</span>
         </div>
         <div class="player-scores O">
             Player O: <span id="score-O">0</span>
         </div>
-        <div class="mode1">
-            <span class="mode-select">
-                <span class="mode PvC" onclick="onGameModeChange('PvC', this)">
-                    1 Player
+        <div class="modebc">
+            <div class="mheadings" >
+                Player mode:
+            </div>
+             <div class="mode1">
+                <span class="mode-select">
+                    <span class="mode PvC" onclick="onGameModeChange('PvC', this)">
+                        1 Player
+                    </span>
+                    <span onclick="onGameModeChange('PvP', this)" class="mode PvP mode-selected">
+                        2 Players
+                    </span>
                 </span>
-                <span onclick="onGameModeChange('PvP', this)" class="mode PvP mode-selected">
-                    2 Players
-                </span>
-            </span>
-            <button class="suggest-button">Suggest move</button>
+                <div class="suggestbc">
+                    <div class="sheadings" >
+                        Need help?
+                    </div>
+                    <button class="suggest-button">Suggest move</button>
+                </div>
+            </div> 
         </div> 
-        <div class="mode12">
-             <span class="level-select">
-                <span class="level l1" onclick="onLevelChange('l1', this)">
-                    Level 1
+       <div class="levelbc">
+            <div class="lheadings">
+                    Levels for single player:
+            </div>    
+            <div class="mode12">          
+                
+                 <span class="level-select">
+                    <span class="level l1" onclick="onLevelChange('l1', this)">
+                        Level 1
+                    </span>
+                    <span onclick="onLevelChange('l2', this)" class="level l2">
+                        Level 2
+                    </span>
+                    <span onclick="onLevelChange('l3', this)" class="level l3">
+                        Level 3
+                    </span>
+                    <span onclick="onLevelChange('l4', this)" class="level l4">
+                        Level 4
+                    </span>
+                    <span onclick="onLevelChange('l5', this)" class="level l5 level-selected">
+                        Unlimited
+                    </span>
                 </span>
-                <span onclick="onLevelChange('l2', this)" class="level l2">
-                    Level 2
-                </span>
-                <span onclick="onLevelChange('l3', this)" class="level l3">
-                    Level 3
-                </span>
-                <span onclick="onLevelChange('l4', this)" class="level l4">
-                    Level 4
-                </span>
-                <span onclick="onLevelChange('l5', this)" class="level l5 level-selected">
-                    Unlimited
-                </span>
-            </span>
+            </div>
         </div >
         
         
     </div>
-    <!-- The Modal -->
         
     <div class="container">
         <h1 class="welcome-text">

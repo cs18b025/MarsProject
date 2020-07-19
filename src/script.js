@@ -29,8 +29,9 @@ function onGameModeChange(mode, _el) {
     gameMode = mode;
     newGame(); 
 }
+
 function onLevelChange(level,_el) {
-    //Here depending on the button pressed, PvP or PvC mode is implemented
+    //Here depending on the button pressed, the level which is effctively the depth is input and that button is selected.
     if (_el.classList.contains('level-selected'))
         return;
     _el.classList.add('level-selected');
@@ -178,6 +179,7 @@ function calculateScore(positions, isCheckOnly) {
 }
 
 function clearBoard() {
+    //clear the board by removing the moves and chaging color back
     document.querySelectorAll('.box').forEach((value, index) => {
         value.style.backgroundColor='gray';
         value.value = '';
@@ -221,11 +223,13 @@ document.querySelectorAll('.suggest-button').forEach((value, key) => {
 })
 
 function newGame() {
+    //show the loader
     showLoader();
     clearBoard();
     document.querySelector('.winner-screen').classList.remove('fade-in');
     document.querySelector('.winner-screen').classList.add('fade-out');
     switchPlayer();
+    //hide the loader
     setTimeout(hideLoader, 500);
 }
 
@@ -234,10 +238,13 @@ function computerPlays(isCheck = false) {
     //call findmove function to get best possible move for the computer
     //hard coding first level to speed up the process
     //this is the first iteration of minimax in which a direct victory move is played
+    if(turnCount==1){
+        nextBoxCoords =computeFirstMove();
+    }
     if (!nextBoxCoords) {
         nextBoxCoords = computeFinishingMove(); 
     } 
-    //this blocks any direct win of the opponent
+    //this blocks any direct win of the opponent but it is of depth 2 so if max depth is 1 this shouldnt be implemented
     if (!nextBoxCoords && max_depth > 1) {
         nextBoxCoords = computeSavingMove();
     }
@@ -511,39 +518,13 @@ function getRemainingMoves() {
     return allMoves.filter(m => !playedMoves.find(move => move == m));
 }
 
-// var mod=getElementById("level");
-// var l1=getElementById("level 1");
-// var l2=getElementById("level 2");
-// var l3=getElementById("level 3");
-// var l4=getElementById("level 4");
-// var l5=getElementById("level 5");
+
 function showLoader() {
-    document.querySelector('.loader-overlay').style.display = 'block';
-    //mod.style.display="block";
+    document.querySelector('.loader-overlay').style.display = 'block';   
 }
-// l1.onclick = function(){
-//     dep=1;
-//     setTimeout(hideLoader, 500);
-// }
-// l2.onclick = function(){
-//     dep=2;
-//     setTimeout(hideLoader, 500);
-// }
-// l3.onclick = function(){
-//     dep=3;
-//     setTimeout(hideLoader, 500);
-// }
-// l4.onclick = function(){
-//     dep=4;
-//     setTimeout(hideLoader, 500);
-// }
-// l5.onclick = function(){
-//     dep=100;
-//     setTimeout(hideLoader, 500);
-// }
+
 function hideLoader(){
     document.querySelector('.loader-overlay').style.display = 'none';
-    //mod.style.display="none";
 }
 
 //function that if the suggestion button is clicked, call ComputerPlays(true)

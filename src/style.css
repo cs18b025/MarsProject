@@ -111,11 +111,13 @@ body{
 }
 
 .suggest-button{
-    background-color: black;
+    margin: 10px;
+    padding: 10px 20px;
+    transition: background-color 200ms ease-in-out;
     color: white;
-    margin-top: 100px;
-    font-size: 16px;
-    line-height: 40px;
+    background-color:black; 
+    border: 1px solid white;
+    cursor: pointer;
 }
 
 #new-game, .okay-button {
@@ -169,15 +171,20 @@ body{
 
 
 .player-scores {
+    align-content: center;
     background-color: lightgrey;
     color:black;
     padding: 10px 0;
 
 }
-
+.headings{
+    background-color: grey;
+    color:black;
+    padding: 10px 0;
+}
 .player-scores.X {
     color:black;
-    
+    padding: 10px 0;
 }
 
 .player-scores.Y {
@@ -213,10 +220,56 @@ button {
     visibility: hidden;
     transition: visibility 0s 200ms, opacity 200ms ease-in-out  ;
 }
-.mode1{
+.modebc{
+    background-color: lightgrey;
     width: 20vw;
     position: fixed;
-    bottom: 100px;
+    bottom: 720px;
+    left: 0;
+    top:150px;
+
+}
+.suggestbc{
+    background-color: lightgrey;
+    width: 20vw;
+    position: fixed;
+    bottom: 570px;
+    left: 0;
+    top:300px;
+
+}
+.sheadings{
+    padding: 10px 0;
+    bottom:10px;
+    background-color: grey;
+    color: Black;
+}
+
+.levelbc{
+    background-color: lightgrey;
+    width: 20vw;
+    position: fixed;
+    bottom: 200px;
+    left: 0;
+    top:500px;
+
+}
+.lheadings{
+    padding: 10px 0;
+    bottom:10px;
+    background-color: grey;
+    color: Black;
+}
+.mheadings{
+    padding: 10px 0;
+    bottom:10px;
+    background-color: grey;
+    color: Black;
+}
+.mode1{
+    width: 15vw;
+    position: fixed;
+    bottom: 550px;
     left: 0;
     top:200px;
 
@@ -264,13 +317,14 @@ button {
     background-color: black;
 }
 .mode12{
-    width: 20vw;
+    width: 5vw;
     position: fixed;
     bottom: 100px;
-    left: 0;
-    top:500px;
+    left: 75px;
+    top:550px;
 
 }
+
 .level-select{
     margin-top: 100px;
     font-size: 16px;
@@ -349,7 +403,10 @@ button {
         float: none;
         font-size: 2rem;
     }
-
+    .level-select{
+        float: none;
+        font-size: 2rem;
+    }
     .welcome-text{
         font-size: 4rem;
     }
