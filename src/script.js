@@ -7,7 +7,6 @@ var turnCount = 0;
 var gameMode = 'PvP';
 
 var dep=-1;
-
 //After new game we wait for click in any box in the container. After click go to onCheckbox(). 
 document.querySelectorAll('.box').forEach((value, key) => {
     value.addEventListener("click", () => {
@@ -30,11 +29,25 @@ function onGameModeChange(mode, _el) {
     gameMode = mode;
     newGame(); 
 }
-
+function clearSuggestion(){
+    //Change suggestion color green to grey again
+    var remainingMoves=getRemainingMoves();
+    for(var box of remainingMoves){
+        var nbox=document.querySelector(`[id='${box}']`);
+        nbox.style.backgroundColor='gray';
+    }
+    
+}
 function onCheckBox(element) {
+    //Ensure all suggestions are cleared
+    clearSuggestion();
+    //Change color to black
+    element.style.backgroundColor='black';
+    
     //Here we push box id and player onto the dictionary and call checkElement
     checkedBoxes.push({ box: element.id, player: currentPlayer });
     checkElement(element);
+    
     turnCount++;
     //check in case there is a winner
     var gameStatus = checkWinner();
@@ -154,6 +167,7 @@ function showWinner(noWinner = false) {
         document.querySelector('.winner-screen .body').innerHTML = 'Player ' + currentPlayer + ' Won!';
         document.querySelector('.winner-screen').classList.toggle('fade-in');
         document.querySelector('.winner-screen').classList.toggle('fade-out');
+        //update score of player X or player O correspondigly.
         document.querySelector('#score-' + currentPlayer).textContent = Number(document.querySelector('#score-' + currentPlayer).textContent) + 1;
         return;
     }
@@ -169,7 +183,7 @@ document.querySelectorAll('.okay-button').forEach((value, key) => {
 //if suggestion button is clicked show suggestion
 document.querySelectorAll('.suggest-button').forEach((value, key) => {
     value.addEventListener('click', () => {
-        
+        computerPlays(true);
     });
 })
 
@@ -203,7 +217,9 @@ function computerPlays(isCheck = false) {
     }
     var nextBox = document.querySelector(`[id='${nextBoxCoords}']`);
     if (isCheck) {
+        console.log(nextBoxCoords);
         //make the 'nextBox' with a different color
+        nextBox.style.backgroundColor='green';
     }
     else {
         onCheckBox(nextBox); 
