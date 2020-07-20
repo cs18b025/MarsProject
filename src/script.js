@@ -359,7 +359,7 @@ function findmove(){
 var max_depth=1000;
 
 function minimax(depth,ismax) {
-    //here minimax coniders winning possiblities, minimum depth of win and number of possiblities of winning in that order of precedence using a factor of 10.
+    //here minimax coniders winning possiblities, minimum depth of win and number of possiblities of winning in that order of precedence using a factor of 10 and 100.
     var remainingMoves = getRemainingMoves();
     var score = evaluate();
     //return the evaluated score of maximiser
