@@ -163,8 +163,8 @@ body{
     left: 0;
     top:0;
     text-align: center;
-    background-color: white;
-    color: white;
+    background-color: lightgray;
+    color: black;
     z-index: 10 ;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3)
 }
