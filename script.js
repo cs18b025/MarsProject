@@ -359,49 +359,45 @@ function findmove(){
 var max_depth=1000;
 
 function minimax(depth,ismax) {
-    //here minimax coniders winning possiblities, minimum depth of win and number of possiblities of winning in that order of precedence using a factor of 10 and 100.
+    //here minimax coniders winning possiblities and minimum depth of win in that order of precedence using a factor of 10 and 100.
     var remainingMoves = getRemainingMoves();
     var score = evaluate();
     //return the evaluated score of maximiser
-    if(score == 1) return 1000-depth*10+1;
+    if(score == 1) return 100-depth;
     //return the evaluated score of minimiser
-    if(score == -1) return -1000+depth*10-1;
+    if(score == -1) return -100+depth;
     //to incorporate the intelligence level
     if(depth >= max_depth) return 0;   
     if(!remainingMoves)return 0;
     //if the move is by maximiser
     if(ismax){
-        var bval=-10000;
-            var wins=0;
+        var bval=-1000;
         for(move of remainingMoves){
             checkedBoxes.push({ box: move, player: currentPlayer });
             var nextBox = document.querySelector(`[id='${move}']`);
             var v=minimax(depth+1,!ismax);
-            if(v>0)wins=wins+v%1000;
             if(bval<v){
                 bval=v-v%1000;
             }
             checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
         }
-        return bval+wins;
+        return bval;
     }
     //if the move is by minimiser
     else {
-        var bval=10000;
-        var loses=0;
+        var bval=1000;
         for(move of remainingMoves){
             switchPlayer();
             checkedBoxes.push({ box: move, player: currentPlayer });
             var nextBox = document.querySelector(`[id='${move}']`);
-            var v=minimax(depth+1,!ismax);            
-            if(v<0)loses=loses+(-v)%1000;
+            var v=minimax(depth+1,!ismax); 
             if(bval>v){
                 bval=v+(-v)%1000;
             }
             checkedBoxes = checkedBoxes.filter(b => b.box != nextBox.id);
             switchPlayer();
         }
-        return bval-loses;
+        return bval;
     }
 }
 
